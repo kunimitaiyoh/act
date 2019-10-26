@@ -1,0 +1,44 @@
+import React, { useState, useEffect } from 'react';
+import { RouteComponentProps } from 'react-router';
+import { Link } from 'react-router-dom'
+
+const Counter: React.FunctionComponent<RouteComponentProps<CounterParams>> = (props: RouteComponentProps<CounterParams>) => {
+  const params = props.match.params;
+
+  const [state, setState] = useState({ count: 0 });
+
+  useEffect(() => {
+    setState(_ => ({ count: params.value ? parseInt(params.value) : 0 }));
+  }, [params]);
+
+  const addCount = (value: number) => {
+    setState(previous => ({ ...previous, count: previous.count + value }));
+  };
+
+  return (
+    <div>
+      <button onClick={ () => addCount(-1) }>-</button>
+      <span>{ state.count }</span>
+      <button onClick={ () => addCount(+1) }>+</button>
+      <div>
+          <ul>
+            <li>
+              <Link to="/counter" className="App-link">Counter</Link>
+            </li>
+            <li>
+              <Link to="/counter/42" className="App-link">Counter: 42</Link>
+            </li>
+            <li>
+              <Link to="/counter/100" className="App-link">Counter: 100</Link>
+            </li>
+          </ul>
+        </div>
+    </div>
+  );
+};
+
+export default Counter;
+
+interface CounterParams {
+  value?: string;
+}
