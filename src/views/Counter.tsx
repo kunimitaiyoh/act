@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { RouteComponentProps } from 'react-router';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 
-const Counter: React.FunctionComponent<RouteComponentProps<CounterParams>> = (props: RouteComponentProps<CounterParams>) => {
-  const params = props.match.params;
+const Counter: React.FunctionComponent<CounterParams> = (props: CounterParams) => {
+  const params = props;
 
-  const [state, setState] = useState({ count: 0 });
-
-  useEffect(() => {
-    setState(_ => ({ count: params.value ? parseInt(params.value) : 0 }));
-  }, [params]);
+  const [state, setState] = useState({ count: params.value ? parseInt(params.value) : 0 });
 
   const addCount = (value: number) => {
     setState(previous => ({ ...previous, count: previous.count + value }));
