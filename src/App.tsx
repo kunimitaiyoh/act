@@ -1,16 +1,15 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, RouteComponentProps } from 'react-router-dom'
 import Counter from "./views/Counter";
 import Home from "./views/Home";
-import ActivityRoute from './components/app/ActivityRoute';
 
 const App: React.FunctionComponent = () => {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={ Home } />
-        <ActivityRoute path="/counter" activity={ Counter } />
-        <ActivityRoute path="/counter/:value" activity={ Counter } />
+        <Route exact path="/counter" component={ render(Counter) } />
+        <Route exact path="/counter/:value" component={ render(Counter) } />
         <Route component={ () => <div>Not Found</div> } />
       </Switch>
     </BrowserRouter>
@@ -18,3 +17,9 @@ const App: React.FunctionComponent = () => {
 }
 
 export default App;
+
+function render<T>(component: React.ComponentType<T>): React.FunctionComponent<RouteComponentProps<T>> {
+  return props => {
+    return React.createElement(component, { ...props.match.params, key: props.match.url });
+  };
+}
