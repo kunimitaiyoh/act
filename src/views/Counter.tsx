@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, RouteComponentProps } from 'react-router-dom'
 
-const Counter: React.FunctionComponent<CounterParams> = (props: CounterParams) => {
-  const params = props;
+const Counter: React.FunctionComponent<RouteComponentProps<CounterParams>> = (props: RouteComponentProps<CounterParams>) => {
+  const params = props.match.params;
 
   const [state, setState] = useState({ count: params.value ? parseInt(params.value) : 0 });
 

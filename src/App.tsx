@@ -18,8 +18,8 @@ const App: React.FunctionComponent = () => {
 
 export default App;
 
-function render<T>(component: React.ComponentType<T>): React.FunctionComponent<RouteComponentProps<T>> {
+function render<T>(component: React.ComponentType<RouteComponentProps<T>>): React.FunctionComponent<RouteComponentProps<T>> {
   return props => {
-    return React.createElement(component, { ...props.match.params, key: props.match.url });
+    return React.createElement(component, { ...props, key: props.match.url });
   };
 }
