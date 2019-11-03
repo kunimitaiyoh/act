@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
-import { ActivityDefinition } from '../components/app/types';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { ActivityDefinition } from "../components/app/types";
 
 export const Counter: ActivityDefinition<CounterParams> = {
   decoder(props) {

@@ -1,9 +1,9 @@
-import React from 'react';
-import { BrowserRouter, Switch, Route, RouteComponentProps } from 'react-router-dom'
+import React from "react";
+import { BrowserRouter, Switch, Route, RouteComponentProps } from "react-router-dom";
 import { Counter } from "./views/Counter";
 import Home from "./views/Home";
-import { ActivityDefinition } from './components/app/types';
-import { NotFound } from './views/NotFound';
+import { ActivityDefinition } from "./components/app/types";
+import { NotFound } from "./views/NotFound";
 
 const App: React.FunctionComponent = () => {
   return (
@@ -16,17 +16,17 @@ const App: React.FunctionComponent = () => {
       </Switch>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
 
 function render<T>(activity: ActivityDefinition<T>): React.FunctionComponent<RouteComponentProps<{ [key: string]: string | undefined }>> {
   return props => {
-    const params = activity.decoder(props)
+    const params = activity.decoder(props);
     if (params) {
       return React.createElement(activity.Component, { ...params, key: props.match.url });
     } else {
-      return <NotFound />
+      return <NotFound />;
     }
   };
 }
