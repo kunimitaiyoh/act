@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ActivityDefinition } from "../components/app/types";
+import { Button } from "semantic-ui-react";
 
 export const Counter: ActivityDefinition<CounterParams> = {
   decoder(props) {
@@ -22,9 +23,9 @@ export const Counter: ActivityDefinition<CounterParams> = {
 
     return (
       <div>
-        <button onClick={ () => addCount(-1) }>-</button>
+        <Button onClick={ () => addCount(-1) }>-</Button>
         <span>{ state.count }</span>
-        <button onClick={ () => addCount(+1) }>+</button>
+        <Button onClick={ () => addCount(+1) }>+</Button>
         <div>
           <ul>
             <li><Link to="/counter" className="App-link">Counter</Link></li>
