@@ -12,7 +12,7 @@ const App: React.FunctionComponent = () => {
         <Route exact path="/" component={ Home } />
         <Route exact path="/counter" component={ render(Counter) } />
         <Route exact path="/counter/:value" component={ render(Counter) } />
-        <Route component={ () => <div>Not Found</div> } />
+        <Route component={ () => <NotFound /> } />
       </Switch>
     </BrowserRouter>
   );
@@ -24,7 +24,7 @@ function render<T>(activity: ActivityDefinition<T>): React.FunctionComponent<Rou
   return props => {
     const params = activity.decoder(props);
     if (params) {
-      return React.createElement(activity.Component, { ...params, key: props.match.url });
+      return React.createElement(activity.Component, { ...props, params, key: props.match.url });
     } else {
       return <NotFound />;
     }

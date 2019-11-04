@@ -13,7 +13,7 @@ export const Counter: ActivityDefinition<CounterParams> = {
       return null;
     }
   },
-  Component: (params) => {
+  Component: ({ params }) => {
     const [state, setState] = useState({ count: params.value });
 
     const addCount = (value: number) => {
